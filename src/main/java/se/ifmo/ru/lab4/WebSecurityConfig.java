@@ -31,17 +31,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors()                          /* включить запросы с други ресурсов */
-                .and().csrf().disable()      /* выключить защиту межсайтовой подделки запроса */
-                .authorizeRequests()         /* упрвление доступом */
+        http.cors()                         
+                .and().csrf().disable()      
+                .authorizeRequests()        
                 .antMatchers("/authorization/signup").not().fullyAuthenticated()
                 .antMatchers("/authorization/signin").permitAll()
                 .antMatchers("/points").permitAll()
-                .and().httpBasic()           /* http basic метод авторизации */
+                .and().httpBasic()          
                 .and()
                 .logout()
                 .logoutUrl("/authorization/logout")
-                .deleteCookies("JSESSIONID") /* удаление сессионной куки при выходе */
+                .deleteCookies("JSESSIONID") 
                 .invalidateHttpSession(true);
 
     }
